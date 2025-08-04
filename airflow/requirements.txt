@@ -1,2 +1,2 @@
-awswrangler
-faker
+awswrangler==3.10.0
+faker==35.0.0
