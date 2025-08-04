@@ -13,21 +13,11 @@ Built with:
 - Terraform (for infrastructure provisioning)
 - Docker (for local orchestration)
 
----
-
-## Tools
-
-```bash
-| Tool/Service     | Purpose                                |
-|------------------|----------------------------------------|
-| Airflow          | DAG-based pipeline orchestration       |
-| Faker + pandas   | Synthetic transaction data generation  |
-| AWS S3           | Raw data lake in Parquet format        |
-| Redshift         | Final structured analytics storage     |
-| Terraform        | Infrastructure as Code (IaC)           |
-| Docker           | Containerized environment              |
-```
----
+**Tools Used:**
+- **Apache Airflow** (Dockerized)
+- **AWS S3** – Data Lake storage
+- **Amazon Redshift** – Data warehouse
+- **Python + pandas + awswrangler** – For ETL logic
 
 ## What the Pipeline Does
 
@@ -48,41 +38,11 @@ s3://shopverse-raw/transactions/tran-YYYY-MM-DD.parquet
 ### 3. **Load to Amazon Redshift**
 Using Airflow's native `S3ToRedshiftOperator`, the pipeline loads the parquet file into a table called `transactions` under the `public` schema.
 
----
-
 Orchestrated with **Airflow DAG** using the following flow:
 
 ```python
 generate_transaction_data >> write_to_s3 >> s3_to_redshift
 ```
-
----
-
-## Project Structure
-
-```bash
-Shopverse_Pipeline_Africa/
-│
-├── airflow/
-│   ├── dags/               
-│       ├── extract_to_s3.py     
-│       ├── extract_to_s3_dag.py   
-│
-├── infrastructure/
-│   ├── terraform/                    # Terraform configuration
-│       ├── redshift.tf              # Redshift cluster setup
-│       ├── s3.tf                    # S3 bucket provisioning
-│       ├── providers.tf             # AWS provider
-│       ├── backend.tf               # Backend config
-│     
-│
-├── docker-compose.yaml               # Airflow local deployment
-├── requirements.txt                  # Python dependencies
-├── .gitignore
-└── README.md
-```
-
----
 
 ## How to Run the Project
 
@@ -110,14 +70,8 @@ docker-compose up
 ### 3. **Set Airflow Connections**
 ```bash
 
-From the Airflow UI (`http://localhost:8080`), go to **Admin > Connections** and add:
-
-| Conn ID        | Conn Type | Extra / Notes                                  |
-|----------------|-----------|------------------------------------------------|
-| `aws_default`  | Amazon Web Services | Use your AWS access/secret key       |
-| `redshift`     | Postgres (Redshift) | Host, port, DB name, user, password  |
+From the Airflow UI (`http://localhost:8080`), go to **Admin > Connections** and add your credentials.
 ```
----
 
 ## DAG Logic
 
