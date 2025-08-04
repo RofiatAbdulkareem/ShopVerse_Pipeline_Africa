@@ -1,10 +1,11 @@
 from datetime import datetime
 
-from airflow import DAG
-from airflow.dags.extract_to_s3 import generate_transaction, upload_to_s3
 from airflow.operators.python import PythonOperator
 from airflow.providers.amazon.aws.transfers.s3_to_redshift import \
     S3ToRedshiftOperator
+
+from airflow import DAG
+from airflow.dags.extract_to_s3 import generate_transaction, upload_to_s3
 
 today_str = datetime.today().strftime("%Y-%m-%d")
 
