@@ -134,7 +134,4 @@ copy_options = ["FORMAT AS PARQUET"]
 
 ---
 
-
-```markdown
 ![Airflow DAG](screenshots/airflow_dag.png)
-```
