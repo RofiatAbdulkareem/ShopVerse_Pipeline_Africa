@@ -24,8 +24,8 @@ Built with:
 ### 1. **Generate Transaction Data**
 Using the `Faker` library, the pipeline simulates realistic e-commerce transaction records:
 
-- `first_name`, `last_name`, `customer_id`, `product_id`
-- `transaction_date`, `payment_method`, `store_location`
+- `first_name`, `last_name`, `customer_id`, `product_id`,
+`transaction_date`, `payment_method`, `store_location`
 
 Each run creates between **500,000 and 1,000,000 rows**, stored in a `pandas.DataFrame`.
 
@@ -63,7 +63,7 @@ Creates:
 ### 2. **Start Airflow (Docker)**
 
 ```bash
-docker-compose up airflow-init
+docker build -t imagename .
 docker-compose up
 ```
 
